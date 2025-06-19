@@ -15,6 +15,7 @@ env/
 .env/
 
 # IDEs
+.idea
 .idea/
 .vscode/
 
