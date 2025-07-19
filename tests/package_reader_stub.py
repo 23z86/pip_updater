@@ -1,8 +1,4 @@
-import os
-import re
-
-
-class PackageReader():
+class PackageReaderStub():
 
     def run(self):
         raw_pip_list = os.popen("pip list --outdated").read()
