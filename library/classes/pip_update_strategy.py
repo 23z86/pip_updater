@@ -1,3 +1,6 @@
+# pylint: disable=missing-docstring
+
+
 import subprocess
 from library.interfaces.update_strategy import IUpdateStrategy
 

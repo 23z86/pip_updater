@@ -1,3 +1,6 @@
+# pylint: disable=missing-docstring
+
+
 from abc import ABC, abstractmethod
 
 

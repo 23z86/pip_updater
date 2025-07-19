@@ -1,3 +1,6 @@
+# pylint: disable=missing-docstring
+
+
 from library.classes.package_updater import PackageUpdater
 from library.classes.common_update_strategy import CommonUpdateStrategy
 from library.classes.pip_update_strategy import PipUpdateStrategy
