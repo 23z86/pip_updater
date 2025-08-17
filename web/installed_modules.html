@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Overview</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='semanticui/semantic.min.css') }}">
+    <script src="{{ url_for('static', filename='semanticui/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='semanticui/semantic.min.js') }}"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #f8f8f8;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        nav a {
+            margin: 0 1rem;
+            text-decoration: none;
+            color: #333;
+
+            &:hover {
+                font-weight: bold;
+            }
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        .search-box {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .search-box input[type="text"] {
+            width: 50%;
+            padding: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .packages {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .package {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #f8f8f8;
+            border-top: 1px solid #ddd;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2 class="ui header">
+            <a href="https://pypi.org/" , target="_blank"><img
+                    src="https://pypi.org/static/images/logo-large.516e776d.svg" style="height: 60px; width: auto;">
+            </a>PyPi Updater
+        </h2>
+        <div class="ui secondary menu">
+            <a class="item active" href="{{ url_for('show_installed') }}">
+                All Installed
+            </a>
+
+            <a class="item" href="{{ url_for('show_outdated') }}">
+                Outdated
+            </a>
+        </div>
+
+    </header>
+
+    <main>
+        <div class="search-box">
+            <input type="text" placeholder="Suche nach Paketen...">
+            <button>Suche</button>
+        </div>
+
+        <section class="packages">
+            <div class="package">
+                <h2>requests</h2>
+                <p>HTTP library for Python</p>
+            </div>
+            <div class="package">
+                <h2>numpy</h2>
+                <p>Fundamental package for scientific computing</p>
+            </div>
+            <div class="package">
+                <h2>pandas</h2>
+                <p>Data analysis and manipulation tool</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 Juergen Hardt <b>Made with <img src="{{ url_for('static', filename='img/heart.svg') }}", style="height: 20px; width: auto;"> <a href="https://flask.palletsprojects.com/en/stable/" ,
+                target="_blank">Flask</a> and <a href="https://semantic-ui.com/" , target="_blank">Semantic UI</a></b>
+    </footer>
+</body>
+
+</html>

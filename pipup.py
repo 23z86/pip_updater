@@ -18,7 +18,3 @@ class PipUp:
     def update_common(self):
         self.updater.set_strategy(CommonUpdateStrategy())
         self.updater.update(self.package_name)
-
-
-o_pipup = PipUp("aiohttp")
-o_pipup.update_common()
