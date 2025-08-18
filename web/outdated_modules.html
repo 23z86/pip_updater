@@ -9,68 +9,64 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <script src="{{ url_for('static', filename='semanticui/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='semanticui/semantic.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='customjs/requests.js') }}"></script>
+
 </head>
 
 <body>
-    <header>
-        <h2 class="ui header">
-            <a href="https://pypi.org/" , target="_blank"><img
-                    src="https://pypi.org/static/images/logo-large.516e776d.svg" style="height: 60px; width: auto;">
-            </a>PyPi Updater
-        </h2>
-        <div class="ui secondary  menu">
-            <a class="item" href="{{ url_for('show_installed') }}">
-                All Installed
-            </a>
+    <div class="main-container">
+        <header>
+            <h2 class="ui header">
+                <a href="https://pypi.org/" , target="_blank"><img
+                        src="https://pypi.org/static/images/logo-large.516e776d.svg" style="height: 60px; width: auto;">
+                </a>PyPi Updater
+            </h2>
+        </header>
 
-            <a class="item active" href="{{ url_for('show_outdated') }}">
-                Outdated
-            </a>
-        </div>
+        <main>
+            <div class="ui segment" id="loading">
+                <div class="ui active inverted dimmer">
+                    <div class="ui text loader">Reading outdated modules... Please wait.</div>
+                </div>
+                <p></p>
+            </div>
+            <div class="ui labeled icon menu">
+                <a class="item" onclick="loadOutdated()">
+                    <i class="sync icon"></i>
+                    Refresh table
+                </a>
+                <a class="item">
+                    <i class="play icon"></i>
+                    Update All
+                </a>
+            </div>
+            <div class="scroll-container">
 
-    </header>
+                <table class="ui striped table">
+                    <thead>
+                        <tr class="center aligned">
+                            <th>Module</th>
+                            <th>Your Version</th>
+                            <th>Current Version</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="center aligned">
+                            <td colspan="4">Keine veralteten Pakete 🎉</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
 
-    <main>
-        <div class="scroll-container">
-
-            <table class="ui striped table">
-                <thead>
-                    <tr class="center aligned">
-                        <th>Module</th>
-                        <th>Your Version</th>
-                        <th>Current Version</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for module in outdated_modules %}
-                    <tr class="center aligned">
-                        <td><a href="https://pypi.org/project/{{ module.name }}" , target="_blank">{{ module.name }}</a>
-                        </td>
-                        <td>{{ module.version }}</td>
-                        <td>{{ module.latest_version }}</td>
-                        <td>
-                            <form method="post" action="{{ url_for('update_module') }}">
-                                <input type="hidden" name="package_name" value="{{ module.name }}">
-                                <button class="positive ui button">Update</button>
-                            </form>
-                        </td>
-                    </tr>
-                    {% else %}
-                    <tr>
-                        <td colspan="4">Keine veralteten Pakete 🎉</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </main>
-
-    <footer>
-        &copy; 2025 Juergen Hardt <b>Made with <img src="{{ url_for('static', filename='img/heart.svg') }}" ,
-                style="height: 20px; width: auto;"> <a href="https://flask.palletsprojects.com/en/stable/" ,
-                target="_blank">Flask</a> and <a href="https://semantic-ui.com/" , target="_blank">Semantic UI</a></b>
-    </footer>
+        <footer>
+            &copy; 2025 Juergen Hardt <b>Made with <img src="{{ url_for('static', filename='img/heart.svg') }}" ,
+                    style="height: 20px; width: auto;"> <a href="https://flask.palletsprojects.com/en/stable/" ,
+                    target="_blank">Flask</a> and <a href="https://semantic-ui.com/" , target="_blank">Semantic
+                    UI</a></b>
+        </footer>
+    </div>
 </body>
 
 </html>
