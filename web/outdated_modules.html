@@ -26,7 +26,7 @@
         <main>
             <div class="ui segment" id="loading">
                 <div class="ui active inverted dimmer">
-                    <div class="ui text loader">Reading outdated modules... Please wait.</div>
+                    <div class="ui text loader" id="loading_text">Reading outdated modules... Please wait.</div>
                 </div>
                 <p></p>
             </div>
@@ -42,7 +42,7 @@
             </div>
             <div class="scroll-container">
 
-                <table class="ui striped table">
+                <table class="ui striped table" id="module_table">
                     <thead>
                         <tr class="center aligned">
                             <th>Module</th>
@@ -62,7 +62,7 @@
 
         <footer>
             &copy; 2025 Juergen Hardt <b>Made with <img src="{{ url_for('static', filename='img/heart.svg') }}" ,
-                    style="height: 20px; width: auto;"> <a href="https://flask.palletsprojects.com/en/stable/" ,
+                    style="height: 13px; width: auto;">, <a href="https://flask.palletsprojects.com/en/stable/" ,
                     target="_blank">Flask</a> and <a href="https://semantic-ui.com/" , target="_blank">Semantic
                     UI</a></b>
         </footer>
