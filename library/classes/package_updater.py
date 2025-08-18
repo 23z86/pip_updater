@@ -13,4 +13,5 @@ class PackageUpdater():
         self.strategy = strategy
 
     def update(self, package_name=None):
+        assert self.strategy is not None, "Update strategy not set. Call set_strategy() before update()."
         self.strategy.run(package_name)
