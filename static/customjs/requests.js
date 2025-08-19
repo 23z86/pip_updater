@@ -6,6 +6,21 @@ async function loadOutdated() {
     if (!outdatedData) {
 
         const response = await fetch("/get_outdated_modules");
+
+        if (response.text.length === 0) {
+            loader.style.display = 'none';
+            const obj = {
+                latest_filetype: "No Data!",
+                latest_version: "No Data!",
+                name: "No Data!",
+                version: "No Data!"
+            };
+
+            outdatedData = [obj];
+            await fillTable(outdatedData);
+            return;
+        }
+
         outdatedData = await response.json();
     }
     await fillTable(outdatedData);
@@ -16,6 +31,21 @@ async function fillTable(data) {
     const tbody = document.querySelector("table tbody");
     tbody.innerHTML = "";
 
+    if (data[0].name === "No Data!") {
+        const row = document.createElement("tr");
+        row.className = "center aligned";
+
+        row.innerHTML = `
+            <td>🎉</td>            
+            <td>🎉</td>            
+            <td>🎉</td>            
+            <td>🎉</td>            
+        `;
+        tbody.appendChild(row);
+        return;
+    }
+
+
     data.forEach(module => {
         const row = document.createElement("tr");
         row.className = "center aligned";
@@ -24,19 +54,15 @@ async function fillTable(data) {
             <td class="outdated"><a href="https://pypi.org/project/${module.name}"><b>${module.name}</b></a></td>
             <td>${module.version}</td>
             <td>${module.latest_version}</td>
-            <td><button class="positive ui button" onClick="runUpdate('${module.name}')">Update</button></td>
+            <td><button class="positive ui button" onClick="runUpdate('${module.name}', this)">Update</button></td>
             
         `;
         tbody.appendChild(row);
     });
 }
 
-function runUpdate(moduleName) {
-    const loader = document.getElementById('loading');
-    const loaderText = document.getElementById('loading_text');
-    loaderText.textContent = "";
-    loaderText.textContent = `Update für ${moduleName} läuft... Bitte warten!`;
-    loader.style.display = 'block';
+function runUpdate(moduleName, button) {
+    button.className = "ui loading button";
 
     fetch("/update", {
         method: "POST",
@@ -50,8 +76,5 @@ function runUpdate(moduleName) {
                 if (row) row.remove();
             }
         });
-
-        loader.style.display = 'none';
-
     });
 }
