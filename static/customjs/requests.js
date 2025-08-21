@@ -1,52 +1,47 @@
-let outdatedData = null;
-
 async function loadOutdated() {
     const loader = document.getElementById('loading');
     loader.style.display = 'block';
-    if (!outdatedData) {
 
-        const response = await fetch("/get_outdated_modules");
+    const response = await fetch("/api/get_outdated_modules");
 
-        if (response.text.length === 0) {
-            loader.style.display = 'none';
-            const obj = {
-                latest_filetype: "No Data!",
-                latest_version: "No Data!",
-                name: "No Data!",
-                version: "No Data!"
-            };
+    const data = await response.json();
 
-            outdatedData = [obj];
-            await fillTable(outdatedData);
-            return;
-        }
-
-        outdatedData = await response.json();
+    if (!data || data.length === 0) {
+        loader.style.display = 'none';
+        outdatedData = [{
+            latest_filetype: "No Data!",
+            latest_version: "No Data!",
+            name: "No Data!",
+            version: "No Data!"
+        }];
+        await fillTable(outdatedData);
+        return;
     }
+
+    outdatedData = data;
+
     await fillTable(outdatedData);
     loader.style.display = 'none';
 }
 
 async function fillTable(data) {
     const tbody = document.querySelector("table tbody");
+    const module_data = data.data;
     tbody.innerHTML = "";
 
-    if (data[0].name === "No Data!") {
+    if (module_data.length === 0) {
         const row = document.createElement("tr");
         row.className = "center aligned";
 
         row.innerHTML = `
-            <td>🎉</td>            
-            <td>🎉</td>            
-            <td>🎉</td>            
-            <td>🎉</td>            
+            <td colspan="4">Keine veralteten Pakete 🎉</td>           
         `;
         tbody.appendChild(row);
         return;
     }
 
 
-    data.forEach(module => {
+    module_data.forEach(module => {
         const row = document.createElement("tr");
         row.className = "center aligned";
 
@@ -64,7 +59,7 @@ async function fillTable(data) {
 function runUpdate(moduleName, button) {
     button.className = "ui loading button";
 
-    fetch("/update", {
+    fetch("/api/update", {
         method: "POST",
         headers: { "Content-Type": "text/plain" },
         body: moduleName
