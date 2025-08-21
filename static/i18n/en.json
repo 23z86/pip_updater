@@ -1,12 +1,10 @@
 {
-    "loading_text": "Reading outdated modules... Please wait.",
-    "noData": "No Data!",
+    "loading_text": "Reading outdated packages... Please wait.",
     "update": "Update",
-    "refreshTable": "Refresh table",
-    "module": "Module",
+    "package": "package",
     "version": "Version",
     "currentVersion": "Current Version",
     "yourVersion": "Your Version",
     "action": "Action",
-    "noOutdatedModules": "No outdated modules found."
+    "noOutdatedPackages": "No outdated packages found. 🎉"
 }

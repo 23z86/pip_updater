@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <script src="{{ url_for('static', filename='semanticui/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='semanticui/semantic.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='customjs/requests.js') }}"></script>
-    <script src="{{ url_for('static', filename='customjs/translation.js') }}"></script>
+    <script src="{{ url_for('static', filename='customjs/requests.js') }}" type="module" ></script>
+    <script src="{{ url_for('static', filename='customjs/translation.js') }}" type="module" ></script>
 
 </head>
 
@@ -27,37 +27,28 @@
         <main>
             <div class="ui segment" id="loading">
                 <div class="ui active inverted dimmer">
-                    <div class="ui text loader" id="loading_text">Reading outdated modules... Please wait.</div>
+                    <div class="ui text loader" id="loading_text">Reading outdated packages... Please wait.</div>
                 </div>
                 <p></p>
             </div>
             <div class="ui labeled icon menu">
                 <a class="item" onclick="loadOutdated()">
-                    <i id="refresh_table" class="sync icon"></i>
-                    Refresh table
-                </a>
-                <a class="item" onclick="setLanguage('en')">
-                    <i class="language icon"></i>
-                    English &#x1F1FA;&#x1F1F8;
-                </a>
-                <a class="item" onclick="setLanguage('de')">
-                    <i class="language icon"></i>
-                    Deutsch &#x1F1E9;&#x1F1EA;
+                    <i  class="sync icon"></i>
                 </a>
             </div>
             <div class="scroll-container">
-                <table class="ui striped table" id="module_table">
+                <table class="ui striped table" id="package_table">
                     <thead>
                         <tr class="center aligned">
-                            <th>Module</th>
-                            <th>Your Version</th>
-                            <th>Current Version</th>
-                            <th>Action</th>
+                            <th id="th_package">Package</th>
+                            <th id="th_version">Your Version</th>
+                            <th id="th_current_version">Current Version</th>
+                            <th id="th_action">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="center aligned">
-                            <td colspan="4">No outdated packages found 🎉</td>
+                            <td id="td_packages" colspan="4">No outdated packages found 🎉</td>
                         </tr>
                     </tbody>
                 </table>
@@ -65,7 +56,7 @@
         </main>
 
         <footer>
-            &copy; 2025 Juergen Hardt <b>Made with <img src="{{ url_for('static', filename='img/heart.svg') }}" ,
+            2025 <b>Made with <img src="{{ url_for('static', filename='img/heart.svg') }}" ,
                     style="height: 13px; width: auto;">, <a href="https://flask.palletsprojects.com/en/stable/" ,
                     target="_blank">Flask</a> and <a href="https://semantic-ui.com/" , target="_blank">Semantic
                     UI</a></b>

@@ -14,34 +14,34 @@ def index():
     return redirect(url_for("show_outdated"))
 
 
-@pipup.route("/api/get_outdated_modules", methods=['GET'])
-def get_outdated_modules():
+@pipup.route("/api/get_outdated_packages", methods=['GET'])
+def get_outdated_packages():
     o_package_reader = PackageReader()
-    outdated_modules = o_package_reader.run()
+    outdated_packages = o_package_reader.run()
 
     return jsonify({
         "status": "success",
-        "data": outdated_modules
+        "data": outdated_packages
     }), 200
 
 
 @pipup.route("/outdated", methods=['GET'])
 def show_outdated():
-    return render_template("outdated_modules.html")
+    return render_template("outdated.html")
 
 
 @pipup.route("/api/update", methods=['POST'])
 def update_package():
-    module_name = request.data.decode("utf-8")
+    package_name = request.data.decode("utf-8")
 
     o_updater = PackageUpdater()
     o_updater.set_strategy(
-        PipUpdateStrategy() if module_name == "pip" else CommonUpdateStrategy())
-    o_updater.update(module_name)
+        PipUpdateStrategy() if package_name == "pip" else CommonUpdateStrategy())
+    o_updater.update(package_name)
 
     return jsonify({
         "status": "success",
-        "message": f"Package '{module_name}' updated successfully."
+        "message": f"Package '{package_name}' updated successfully."
     }), 200
 
 
