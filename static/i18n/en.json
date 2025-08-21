@@ -1,0 +1,12 @@
+{
+    "loading_text": "Reading outdated modules... Please wait.",
+    "noData": "No Data!",
+    "update": "Update",
+    "refreshTable": "Refresh table",
+    "module": "Module",
+    "version": "Version",
+    "currentVersion": "Current Version",
+    "yourVersion": "Your Version",
+    "action": "Action",
+    "noOutdatedModules": "No outdated modules found."
+}

@@ -3,20 +3,7 @@ async function loadOutdated() {
     loader.style.display = 'block';
 
     const response = await fetch("/api/get_outdated_modules");
-
     const data = await response.json();
-
-    if (!data || data.length === 0) {
-        loader.style.display = 'none';
-        outdatedData = [{
-            latest_filetype: "No Data!",
-            latest_version: "No Data!",
-            name: "No Data!",
-            version: "No Data!"
-        }];
-        await fillTable(outdatedData);
-        return;
-    }
 
     outdatedData = data;
 

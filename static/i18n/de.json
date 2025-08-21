@@ -1,0 +1,12 @@
+{
+    "loading_text": "Lese veraltete Module... Bitte warten.",
+    "noData": "Keine Daten!",
+    "update": "Aktualisieren",
+    "refreshTable": "Tabelle aktualisieren",
+    "module": "Modul",
+    "version": "Version",
+    "currentVersion": "Aktuelle Version",
+    "yourVersion": "Ihre Version",
+    "action": "Aktion",
+    "noOutdatedModules": "Keine veralteten Module gefunden."
+}
