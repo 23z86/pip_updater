@@ -10,6 +10,7 @@
     <script src="{{ url_for('static', filename='semanticui/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='semanticui/semantic.min.js') }}"></script>
     <script src="{{ url_for('static', filename='customjs/requests.js') }}"></script>
+    <script src="{{ url_for('static', filename='customjs/translation.js') }}"></script>
 
 </head>
 
@@ -32,7 +33,7 @@
             </div>
             <div class="ui labeled icon menu">
                 <a class="item" onclick="loadOutdated()">
-                    <i class="sync icon"></i>
+                    <i id="refresh_table" class="sync icon"></i>
                     Refresh table
                 </a>
                 <a class="item" onclick="setLanguage('en')">
