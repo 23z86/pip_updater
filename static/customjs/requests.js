@@ -70,7 +70,7 @@ function runUpdate(pip_packageName, button) {
 
 function refreshTable() {
     const tbody = document.querySelector("table tbody");
-    if (tbody.rows.length === 0) {
+    if (tbody?.rows.length === 0) {
         loadOutdated();
     }
 
