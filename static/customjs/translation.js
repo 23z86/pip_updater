@@ -7,7 +7,7 @@ export async function getTranslations() {
     return i18n;
 }
 
-async function setLanguage() {
+async function setFieldsByLanguage() {
 
     const i18n = await getTranslations();
 
@@ -21,5 +21,5 @@ async function setLanguage() {
 }
 
 window.addEventListener("load", async () => {
-    await setLanguage();
+    await setFieldsByLanguage();
 });
