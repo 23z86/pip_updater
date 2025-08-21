@@ -62,7 +62,18 @@ function runUpdate(pip_packageName, button) {
                 if (row) row.remove();
             }
         });
+
+        refreshTable()
+
     });
+}
+
+function refreshTable() {
+    const tbody = document.querySelector("table tbody");
+    if (tbody.rows.length === 0) {
+        loadOutdated();
+    }
+
 }
 
 (window).loadOutdated = loadOutdated;
