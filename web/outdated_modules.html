@@ -35,13 +35,16 @@
                     <i class="sync icon"></i>
                     Refresh table
                 </a>
-                <a class="item">
-                    <i class="play icon"></i>
-                    Update All
+                <a class="item" onclick="setLanguage('en')">
+                    <i class="flag icon"></i>
+                    English &#x1F1FA;&#x1F1F8;
+                </a>
+                <a class="item" onclick="setLanguage('de')">
+                    <i class="flag outline icon"></i>
+                    Deutsch &#x1F1E9;&#x1F1EA;
                 </a>
             </div>
             <div class="scroll-container">
-
                 <table class="ui striped table" id="module_table">
                     <thead>
                         <tr class="center aligned">
@@ -53,7 +56,7 @@
                     </thead>
                     <tbody>
                         <tr class="center aligned">
-                            <td colspan="4">Keine veralteten Pakete 🎉</td>
+                            <td colspan="4">No outdated packages found 🎉</td>
                         </tr>
                     </tbody>
                 </table>

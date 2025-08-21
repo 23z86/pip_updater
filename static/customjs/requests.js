@@ -34,7 +34,7 @@ async function fillTable(data) {
         row.className = "center aligned";
 
         row.innerHTML = `
-            <td colspan="4">Keine veralteten Pakete 🎉</td>           
+            <td colspan="4">No outdated packages found 🎉</td>           
         `;
         tbody.appendChild(row);
         return;
