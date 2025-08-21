@@ -7,10 +7,11 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='semanticui/semantic.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <script src="{{ url_for('static', filename='semanticui/jquery.min.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='jquery/jquery-3.7.0.min.js') }}"></script>
     <script src="{{ url_for('static', filename='semanticui/semantic.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='customjs/requests.js') }}" type="module" ></script>
-    <script src="{{ url_for('static', filename='customjs/translation.js') }}" type="module" ></script>
+    <script src="{{ url_for('static', filename='customjs/requests.js') }}" type="module"></script>
+    <script src="{{ url_for('static', filename='customjs/translation.js') }}" type="module"></script>
 
 </head>
 
@@ -19,7 +20,8 @@
         <header>
             <h2 class="ui header">
                 <a href="https://pypi.org/" , target="_blank"><img
-                        src="https://pypi.org/static/images/logo-large.516e776d.svg" alt="PyPi-Logo" style="height: 60px; width: auto;">
+                        src="https://pypi.org/static/images/logo-large.516e776d.svg" alt="PyPi-Logo"
+                        style="height: 60px; width: auto;">
                 </a>PyPi Updater
             </h2>
         </header>
@@ -33,7 +35,7 @@
             </div>
             <div class="ui labeled icon menu">
                 <a class="item" onclick="loadOutdated()">
-                    <i  class="sync icon"></i>
+                    <i class="sync icon"></i>
                 </a>
             </div>
             <div class="scroll-container">
