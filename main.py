@@ -2,10 +2,7 @@
 
 from flask import Flask, redirect, url_for, render_template, request, jsonify
 
-from library.classes.package_reader import PackageReader
-from library.classes.package_updater import PackageUpdater
-from library.classes.common_update_strategy import CommonUpdateStrategy
-from library.classes.pip_update_strategy import PipUpdateStrategy
+from pipup import PipUp
 
 
 class PipUpAPI():
@@ -13,6 +10,7 @@ class PipUpAPI():
         self.pipup = Flask(__name__, template_folder="web",
                            static_folder="static")
         self.register_routes()
+        self.o_pipup = PipUp()
 
     def register_routes(self):
         self.pipup.add_url_rule("/", "index", self.index, methods=["GET"])
@@ -27,8 +25,7 @@ class PipUpAPI():
         return redirect(url_for("show_outdated"))
 
     def get_outdated_packages(self):
-        o_package_reader = PackageReader()
-        outdated_packages = o_package_reader.run()
+        outdated_packages = self.o_pipup.read_outdated_packages()
 
         return jsonify({
             "status": "success",
@@ -40,11 +37,7 @@ class PipUpAPI():
 
     def update_package(self):
         package_name = request.data.decode("utf-8")
-        o_updater = PackageUpdater()
-        o_updater.set_strategy(
-            PipUpdateStrategy() if package_name == "pip" else CommonUpdateStrategy()
-        )
-        o_updater.update(package_name=package_name)
+        self.o_pipup.update_package(package_name=package_name)
 
         return jsonify({
             "status": "success",
