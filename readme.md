@@ -18,6 +18,6 @@ Press on the "Update" button to start the update.<br>
 You can trigger multiple updates at the same time.
 
 ## **Tipps**
-To change IP and port as you wish in https://github.com/23z86/pip_updater/blob/master/main.py#L52
+To change IP and port as you wish, set them in https://github.com/23z86/pip_updater/blob/master/main.py#L52
 
 Feel free to contribute/creating PRs :)
