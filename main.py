@@ -44,7 +44,7 @@ class PipUpAPI():
         o_updater.set_strategy(
             PipUpdateStrategy() if package_name == "pip" else CommonUpdateStrategy()
         )
-        o_updater.update(package_name)
+        o_updater.update(package_name=package_name)
 
         return jsonify({
             "status": "success",
