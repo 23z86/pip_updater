@@ -13,8 +13,8 @@ class PipUp:
         self.o_factory = UpdateFactory()
 
     def update_package(self, package_name):
-        strategy = self.o_factory.get_strategy(package_name)
-        self.o_updater.set_strategy(strategy)
+        o_strategy = self.o_factory.get_strategy_object(package_name)
+        self.o_updater.set_strategy(o_strategy)
         self.o_updater.update(package_name)
 
     def read_outdated_packages(self):

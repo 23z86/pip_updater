@@ -7,7 +7,7 @@ from library.interfaces.update_strategy import IUpdateStrategy
 
 
 class UpdateFactory:
-    def get_strategy(self, package_name: str) -> IUpdateStrategy:
+    def get_strategy_object(self, package_name: str) -> IUpdateStrategy:
         if package_name == "pip":
             return PipUpdateStrategy()
 
