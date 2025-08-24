@@ -1,3 +1,5 @@
+*** under development ***
+
 ## **Why this project**
 I was looking for an UI based pip application<br>
 and didn't find one so I decided to write my own.
@@ -21,3 +23,4 @@ You can trigger multiple updates at the same time.
 To change IP and port as you wish, set them in https://github.com/23z86/pip_updater/blob/master/main.py#L52
 
 Feel free to contribute/creating PRs :)
+Developed and tested on Windows.
