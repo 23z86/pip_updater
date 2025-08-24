@@ -23,7 +23,7 @@ class PipUpAPI():
 
     def set_status_message(self, data):
         return "No data found." if data == [] else "Data retrieved successfully."
-    
+
     def index(self):
         return redirect(url_for("show_outdated"))
 
@@ -50,7 +50,7 @@ class PipUpAPI():
         }), 200
 
     def run(self):
-        self.pipup.run(debug=True)
+        self.pipup.run(host='127.0.0.1', port=5000, debug=True)
 
 
 if __name__ == "__main__":
