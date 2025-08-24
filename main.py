@@ -21,14 +21,19 @@ class PipUpAPI():
         self.pipup.add_url_rule(
             "/api/update", "update_package", self.update_package, methods=["POST"])
 
+    def set_status_message(self, data):
+        return "No data found." if data == [] else "Data retrieved successfully."
+    
     def index(self):
         return redirect(url_for("show_outdated"))
 
     def get_outdated_packages(self):
         outdated_packages = self.o_pipup.read_outdated_packages()
 
+        status_message = self.set_status_message(outdated_packages)
+
         return jsonify({
-            "status": "success",
+            "status": status_message,
             "data": outdated_packages
         }), 200
 
@@ -40,7 +45,7 @@ class PipUpAPI():
         self.o_pipup.update_package(package_name=package_name)
 
         return jsonify({
-            "status": "success",
+            "status": "Update successfully executed.",
             "message": f"Package '{package_name}' updated successfully."
         }), 200
 
