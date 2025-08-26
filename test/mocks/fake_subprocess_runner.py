@@ -1,17 +1,17 @@
-from library.interfaces.reader_interface import ReaderInterface
+from library.interfaces.subprocess_interface import SubprocessInterface
 
 
-class FakeReader(ReaderInterface):
+class SubprocessRunnerFake(SubprocessInterface):
     def __init__(self):
         self.test_for_empty_list = False
-    
+
     def return_empty_list(self):
         self.test_for_empty_list = True
-        
+
     def run(self):
         if self.test_for_empty_list:
             return []
-        
+
         packages = [
             {
                 "name": "FakeRequests",
