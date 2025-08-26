@@ -1,11 +1,11 @@
 # pylint: disable=missing-docstring
-
+from library.interfaces.reader_interface import ReaderInterface
 
 import subprocess
 import json
 
 
-class PackageReader():
+class ConcreteReader(ReaderInterface):
 
     def run(self):
         raw_pip_list = subprocess.run(

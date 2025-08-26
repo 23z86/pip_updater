@@ -4,7 +4,7 @@
 from abc import ABC, abstractmethod
 
 
-class IUpdateStrategy(ABC):
+class UpdaterInterface(ABC):
     @abstractmethod
     def run(self, **kwargs):
         raise NotImplementedError

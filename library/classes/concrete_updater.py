@@ -1,10 +1,10 @@
 # pylint: disable=missing-docstring
 
 import subprocess
-from library.interfaces.update_strategy import IUpdateStrategy
+from library.interfaces.updater_interface import UpdaterInterface
 
 
-class CommonUpdateStrategy(IUpdateStrategy):
+class ConcreteUpdater(UpdaterInterface):
     def run(self, **kwargs):
         package_name = kwargs.get('package_name')
         cmd = ['python', '-m', 'pip', 'install', '--upgrade', package_name]
