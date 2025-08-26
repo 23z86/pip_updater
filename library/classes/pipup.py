@@ -1,15 +1,14 @@
 # pylint: disable=missing-docstring
 
 
-from library.classes.concrete_reader import ConcreteReader
-from library.classes.concrete_updater import ConcreteUpdater
-
+from library.interfaces.reader_interface import ReaderInterface
+from library.interfaces.updater_interface import UpdaterInterface
 
 
 class PipUp:
-    def __init__(self):
-        self.o_reader = ConcreteReader()
-        self.o_updater = ConcreteUpdater()
+    def __init__(self, reader: ReaderInterface, updater: UpdaterInterface):
+        self.o_reader = reader
+        self.o_updater = updater
 
     def update_package(self, package_name):
         self.o_updater.run(package_name=package_name)

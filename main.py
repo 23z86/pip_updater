@@ -3,6 +3,8 @@
 from flask import Flask, redirect, url_for, render_template, request, jsonify
 
 from library.classes.pipup import PipUp
+from library.classes.concrete_reader import ConcreteReader
+from library.classes.concrete_updater import ConcreteUpdater
 
 
 class PipUpAPI():
@@ -10,7 +12,8 @@ class PipUpAPI():
         self.o_pipup_server = Flask(__name__, template_folder="web",
                                     static_folder="static")
         self.register_routes()
-        self.o_pipup = PipUp()
+        self.o_pipup = PipUp(reader=ConcreteReader(),
+                             updater=ConcreteUpdater())
 
     def register_routes(self):
         self.o_pipup_server.add_url_rule(
