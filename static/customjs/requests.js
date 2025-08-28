@@ -54,18 +54,26 @@ function runUpdate(pip_packageName, button) {
         method: "POST",
         headers: { "Content-Type": "text/plain" },
         body: pip_packageName
-    }).then(() => {
-        const outdatedRow = document.getElementsByClassName("outdated");
-        Array.from(outdatedRow).forEach(cell => {
-            if (cell.innerText.includes(pip_packageName)) {
-                const row = cell.closest('tr');
-                if (row) row.remove();
+    }).then(response => response.json())
+        .then(data => {
+            if (data.status_code === 100) {
+                const outdatedRow = document.getElementsByClassName("outdated");
+                Array.from(outdatedRow).forEach(cell => {
+                    if (cell.innerText.includes(pip_packageName)) {
+                        const row = cell.closest('tr');
+                        if (row) row.remove();
+                    }
+                });
+            } else {
+                console.warn("Update failed:", data.message);
             }
+
+            refreshTable();
+        })
+        .catch(err => {
+            console.error("Fetch error:", err);
+            alert("Network or server error during update.");
         });
-
-        refreshTable()
-
-    });
 }
 
 function refreshTable() {

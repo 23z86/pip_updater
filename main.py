@@ -6,6 +6,7 @@ from library.classes.pipup import PipUp
 from library.classes.concrete_reader import ConcreteReader
 from library.classes.concrete_updater import ConcreteUpdater
 from library.classes.subprocess_runner import SubprocessRunner
+from library.classes.concrete_checker import PackageChecker
 
 
 class PipUpAPI():
@@ -18,6 +19,7 @@ class PipUpAPI():
         o_updater = ConcreteUpdater()
 
         self.o_pipup = PipUp(reader=o_reader, updater=o_updater)
+        self.o_checker = PackageChecker()
 
     def register_routes(self):
         self.o_pipup_server.add_url_rule(
@@ -50,12 +52,23 @@ class PipUpAPI():
 
     def update_package(self):
         package_name = request.data.decode("utf-8")
-        self.o_pipup.update_package(package_name)
 
-        return jsonify({
-            "status": "Update successfully executed.",
-            "message": f"Package '{package_name}' updated successfully."
-        }), 200
+        try:
+            self.o_checker.run(package_name=package_name)
+            self.o_pipup.update_package(package_name)
+
+            return jsonify({
+                "status": "Update successfully executed.",
+                "status_code": 100,
+                "message": f"Package '{package_name}' updated successfully."
+            }), 200
+
+        except ModuleNotFoundError as error:
+            return jsonify({
+                "status": "Update failed.",
+                "status_code": 400,
+                "message": str(error.msg)
+            }), 200
 
     def run(self):
         self.o_pipup_server.run(host='127.0.0.1', port=5000, debug=True)
