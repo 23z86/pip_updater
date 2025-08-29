@@ -1,7 +1,7 @@
 {
     "loading_text": "Reading outdated packages... Please wait.",
     "update": "Update",
-    "package": "package",
+    "package": "Package",
     "version": "Version",
     "currentVersion": "Current Version",
     "yourVersion": "Your Version",

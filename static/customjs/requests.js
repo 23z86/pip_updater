@@ -1,4 +1,5 @@
 import { getTranslations } from "./translation.js";
+const translation = await getTranslations()
 
 async function loadOutdated() {
     const loader = document.getElementById('loading');
@@ -14,8 +15,6 @@ async function loadOutdated() {
 }
 
 async function fillTable(data) {
-    const translation = await getTranslations();
-
     const tbody = document.querySelector("table tbody");
     const pip_package_data = data.data;
     tbody.innerHTML = "";
@@ -60,19 +59,22 @@ function runUpdate(pip_packageName, button) {
                 const outdatedRow = document.getElementsByClassName("outdated");
                 Array.from(outdatedRow).forEach(cell => {
                     if (cell.innerText.includes(pip_packageName)) {
-                        const row = cell.closest('tr');
-                        if (row) row.remove();
+                            button.className = "ui inverted green button";
+                            button.innerText = "Up-to-date";
+                            button.disabled = "disabled";
                     }
                 });
             } else {
                 console.warn("Update failed:", data.message);
+                button.className = "positive ui button";
             }
 
             refreshTable();
         })
         .catch(err => {
-            console.error("Fetch error:", err);
-            alert("Network or server error during update.");
+            console.warn("Update failed:", err);
+            button.className = "positive ui button";
+
         });
 }
 

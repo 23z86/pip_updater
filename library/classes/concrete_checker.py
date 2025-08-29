@@ -1,14 +1,15 @@
 # pylint: disable=missing-docstring
 
 from library.interfaces.checker_interface import CheckerInterface
-from importlib import util
+import requests
 
 
 class PackageChecker(CheckerInterface):
     def run(self, **kwargs):
         package_name = kwargs.get('package_name')
-        
-        #TODO build a request to pypi website to check whether the package is exisiting. More reliable
-        if not util.find_spec(package_name):
+
+        response = requests.get(f'https://pypi.org/pypi/{package_name}/json')
+
+        if response.status_code == 404:
             raise ModuleNotFoundError(
-                f"Package {package_name} not found or is not installed.")
+                f"Package {package_name} not found.")
