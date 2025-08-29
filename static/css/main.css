@@ -58,9 +58,12 @@
      overflow-y: auto;
  }
 
- button {
-     width: 100%;
- }
+ button.fixed-button {
+    width: 8rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+}
 
  table {
      width: 100%;

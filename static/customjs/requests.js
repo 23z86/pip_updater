@@ -39,7 +39,7 @@ async function fillTable(data) {
             <td class="outdated"><a href="https://pypi.org/project/${pip_package.name}"><b>${pip_package.name}</b></a></td>
             <td>${pip_package.version}</td>
             <td>${pip_package.latest_version}</td>
-            <td><button class="positive ui button" onClick="runUpdate('${pip_package.name}', this)">Update</button></td>
+            <td><button class="positive ui button fixed-button" onClick="runUpdate('${pip_package.name}', this)">${translation["updateButtonText"]}</button></td>
             
         `;
         tbody.appendChild(row);
@@ -47,7 +47,7 @@ async function fillTable(data) {
 }
 
 function runUpdate(pip_packageName, button) {
-    button.className = "ui loading button";
+    button.className = "ui loading fixed-button button";
 
     fetch("/api/update", {
         method: "POST",
@@ -59,21 +59,21 @@ function runUpdate(pip_packageName, button) {
                 const outdatedRow = document.getElementsByClassName("outdated");
                 Array.from(outdatedRow).forEach(cell => {
                     if (cell.innerText.includes(pip_packageName)) {
-                            button.className = "ui inverted green button";
-                            button.innerText = "Up-to-date";
-                            button.disabled = "disabled";
+                        button.className = "ui inverted green fixed-button button";
+                        button.innerText = "Up-to-date";
+                        button.disabled = "disabled";
                     }
                 });
             } else {
-                console.warn("Update failed:", data.message);
-                button.className = "positive ui button";
+                console.warn(translation[errorUpdateFailed], data.message);
+                button.className = "positive ui fixed-button button";
             }
 
             refreshTable();
         })
         .catch(err => {
-            console.warn("Update failed:", err);
-            button.className = "positive ui button";
+            console.warn(translation[errorUpdateFailed], err);
+            button.className = "positive ui fixed-button button";
 
         });
 }

@@ -6,5 +6,7 @@
     "currentVersion": "Current Version",
     "yourVersion": "Your Version",
     "action": "Action",
-    "noOutdatedPackages": "No outdated packages found. 🎉"
+    "noOutdatedPackages": "No outdated packages found. 🎉",
+    "errorUpdateFailed": "Update failed: ",
+    "updateButtonText": "Update"
 }
