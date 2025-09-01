@@ -65,15 +65,20 @@ function runUpdate(pip_packageName, button) {
                     }
                 });
             } else {
-                console.warn(translation[errorUpdateFailed], data.message);
-                button.className = "positive ui fixed-button button";
+                console.warn(translation["errorUpdateFailed"], data.message);
+                button.className = "ui inverted red button";
+                button.innerText = translation['buttonTextFailed'];
+                button.disabled = "disabled";
+
             }
 
             refreshTable();
         })
         .catch(err => {
-            console.warn(translation[errorUpdateFailed], err);
-            button.className = "positive ui fixed-button button";
+            console.warn(translation["errorUpdateFailed"], err);
+            button.className = "ui inverted red button";
+            button.innerText = translation['buttonTextFailed'];
+            button.disabled = "disabled";
 
         });
 }

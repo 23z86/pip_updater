@@ -8,5 +8,6 @@
     "action": "Action",
     "noOutdatedPackages": "No outdated packages found. 🎉",
     "errorUpdateFailed": "Update failed: ",
-    "updateButtonText": "Update"
+    "updateButtonText": "Update",
+    "buttonTextFailed": "Failed!"
 }
