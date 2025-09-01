@@ -72,7 +72,7 @@ class PipUpAPI():
                     "message": f"Error in subprocess with code {error.returncode}."
                 }), 500
     def run(self):
-        self.o_pipup_server.run(host='127.0.0.1', port=5000, debug=True)
+        self.o_pipup_server.run(host='127.0.0.1', port=5000)
 
 
 if __name__ == "__main__":

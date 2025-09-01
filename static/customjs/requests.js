@@ -66,7 +66,7 @@ function runUpdate(pip_packageName, button) {
                 });
             } else {
                 console.warn(translation["errorUpdateFailed"], data.message);
-                button.className = "ui inverted red button";
+                button.className = "ui inverted red fixed-button button";
                 button.innerText = translation['buttonTextFailed'];
                 button.disabled = "disabled";
 
@@ -76,7 +76,7 @@ function runUpdate(pip_packageName, button) {
         })
         .catch(err => {
             console.warn(translation["errorUpdateFailed"], err);
-            button.className = "ui inverted red button";
+            button.className = "ui inverted red fixed-button button";
             button.innerText = translation['buttonTextFailed'];
             button.disabled = "disabled";
 
