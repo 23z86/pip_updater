@@ -1,12 +1,12 @@
-from library.classes.subprocess_runner import SubprocessRunner
+from library.classes.read_subprocess import ReadSubprocess
 import unittest
-from mocks.fake_subprocess import FakeSubprocess
+from mocks.fake_subprocess import FakeReadSubprocess
 
 
 class SubprocessRunnerSmokeTest(unittest.TestCase):
     def setUp(self):
-        self.fake_subprocess = FakeSubprocess()
-        self.subprocess_runner = SubprocessRunner(self.fake_subprocess)
+        self.fake_subprocess = FakeReadSubprocess()
+        self.subprocess_runner = ReadSubprocess(self.fake_subprocess)
 
     def test_run_returns_list(self):
         packages = self.subprocess_runner.run()

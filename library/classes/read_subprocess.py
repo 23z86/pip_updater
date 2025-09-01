@@ -4,13 +4,14 @@ import json
 from library.interfaces.subprocess_interface import SubprocessInterface
 
 
-class SubprocessRunner(SubprocessInterface):
+class ReadSubprocess(SubprocessInterface):
     def __init__(self, runner=None):
         self.runner = runner or subprocess
 
     def run(self):
+        command =   ["pip", "list", "--outdated", "--format=json"]
         raw_pip_list = self.runner.run(
-            ["pip", "list", "--outdated", "--format=json"],
+            command,
             capture_output=True,
             text=True,
             check=True, creationflags=subprocess.CREATE_NO_WINDOW

@@ -1,17 +1,22 @@
 # pylint: disable=missing-docstring
 
-
-from library.interfaces.reader_interface import ReaderInterface
-from library.interfaces.updater_interface import UpdaterInterface
+from library.classes.subprocess_factory import SubprocessFactory
+from library.classes.concrete_reader import ConcreteReader
+from library.classes.concrete_updater import ConcreteUpdater
 
 
 class PipUp:
-    def __init__(self, reader: ReaderInterface, updater: UpdaterInterface):
-        self.o_reader = reader
-        self.o_updater = updater
+    def __init__(self):
+        self.o_factory = SubprocessFactory()
 
     def update_package(self, package_name):
-        self.o_updater.run(package_name=package_name)
+        o_update_subprocess = self.o_factory.get_subprocess("update")
+        o_updater = ConcreteUpdater(o_update_subprocess)
+
+        o_updater.run(package_name=package_name)
 
     def read_outdated_packages(self):
-        return self.o_reader.run()
+        o_read_subprocess = self.o_factory.get_subprocess("read")
+        o_reader = ConcreteReader(o_read_subprocess)
+
+        return o_reader.run()
