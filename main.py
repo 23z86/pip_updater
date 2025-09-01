@@ -1,6 +1,7 @@
 # pylint: disable=missing-docstring
 
 from flask import Flask, redirect, url_for, render_template, request, jsonify
+import subprocess
 
 from library.classes.pipup import PipUp
 from library.classes.concrete_checker import PackageChecker
@@ -59,11 +60,17 @@ class PipUpAPI():
 
         except ModuleNotFoundError as error:
             return jsonify({
-                "status": "Update failed.",
+                "status": "Update failed!",
                 "status_code": 400,
                 "message": str(error.msg)
             }), 200
-
+            
+        except subprocess.CalledProcessError as error:
+                return jsonify({
+                    "status_code": error.returncode,
+                    "status": "Update failed!",
+                    "message": f"Error in subprocess with code {error.returncode}."
+                }), 500
     def run(self):
         self.o_pipup_server.run(host='127.0.0.1', port=5000, debug=True)
 
