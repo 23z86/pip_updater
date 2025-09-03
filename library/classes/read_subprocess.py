@@ -1,3 +1,4 @@
+# pylint: disable=missing-docstring
 
 import subprocess
 import json
@@ -8,7 +9,7 @@ class ReadSubprocess(SubprocessInterface):
     def __init__(self, runner=None):
         self.runner = runner or subprocess
 
-    def run(self):
+    def run(self, **kwargs):
         command =   ["pip", "list", "--outdated", "--format=json"]
         raw_pip_list = self.runner.run(
             command,

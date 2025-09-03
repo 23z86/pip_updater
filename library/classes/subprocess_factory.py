@@ -1,3 +1,5 @@
+# pylint: disable=missing-docstring
+
 from library.interfaces.subprocess_interface import SubprocessInterface
 from library.classes.read_subprocess import ReadSubprocess
 from library.classes.update_subprocess import UpdateSubprocess
