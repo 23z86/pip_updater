@@ -71,8 +71,6 @@ function runUpdate(pip_packageName, button) {
                 button.disabled = "disabled";
 
             }
-
-            refreshTable();
         })
         .catch(err => {
             console.warn(translation["errorUpdateFailed"], err);
@@ -81,14 +79,6 @@ function runUpdate(pip_packageName, button) {
             button.disabled = "disabled";
 
         });
-}
-
-function refreshTable() {
-    const tbody = document.querySelector("table tbody");
-    if (tbody?.rows.length === 0) {
-        loadOutdated();
-    }
-
 }
 
 (window).loadOutdated = loadOutdated;
