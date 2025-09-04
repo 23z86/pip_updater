@@ -1,12 +1,13 @@
 # pylint: disable=missing-docstring
 
 from library.interfaces.updater_interface import UpdaterInterface
+from library.classes.update_subprocess import UpdateSubprocess
 from library.interfaces.subprocess_interface import SubprocessInterface
 
 
 class ConcreteUpdater(UpdaterInterface):
-    def __init__(self, o_subprocess_runner: SubprocessInterface):
-        self.o_subprocess_runner = o_subprocess_runner
+    def __init__(self):
+        self.o_subprocess_runner: SubprocessInterface = UpdateSubprocess()
 
     def run(self, **kwargs):
         package_name = kwargs.get('package_name')

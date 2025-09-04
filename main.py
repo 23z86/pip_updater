@@ -64,13 +64,14 @@ class PipUpAPI():
                 "status_code": 400,
                 "message": str(error.msg)
             }), 200
-            
+
         except subprocess.CalledProcessError as error:
-                return jsonify({
-                    "status_code": error.returncode,
-                    "status": "Update failed!",
-                    "message": f"Error in subprocess with code {error.returncode}."
-                }), 500
+            return jsonify({
+                "status_code": error.returncode,
+                "status": "Update failed!",
+                "message": f"Error in subprocess with code {error.returncode}."
+            }), 500
+
     def run(self):
         self.o_pipup_server.run(host='127.0.0.1', port=5000)
 
