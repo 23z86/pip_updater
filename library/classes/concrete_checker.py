@@ -1,15 +1,15 @@
 # pylint: disable=missing-docstring
 
+
 from library.interfaces.checker_interface import CheckerInterface
-import requests
+from library.interfaces.requests_interface import RequestsInterface
 
 
 class PackageChecker(CheckerInterface):
+    def __init__(self, runner: RequestsInterface):
+        self.o_runner = runner
+
     def run(self, **kwargs):
         package_name = kwargs.get('package_name')
 
-        response = requests.get(f'https://pypi.org/pypi/{package_name}/json')
-
-        if response.status_code == 404:
-            raise ModuleNotFoundError(
-                f"Package {package_name} not found.")
+        self.o_runner.execute(package_name=package_name)

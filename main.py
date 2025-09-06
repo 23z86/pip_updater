@@ -5,6 +5,7 @@ import subprocess
 
 from library.classes.pipup import PipUp
 from library.classes.concrete_checker import PackageChecker
+from library.classes.requests_runner import RequestsRunner
 
 
 class PipUpAPI():
@@ -14,7 +15,7 @@ class PipUpAPI():
         self.register_routes()
 
         self.o_pipup = PipUp()
-        self.o_checker = PackageChecker()
+        self.o_checker = PackageChecker(RequestsRunner())
 
     def register_routes(self):
         self.o_pipup_server.add_url_rule(
