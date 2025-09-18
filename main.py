@@ -13,6 +13,7 @@ class PipManAPI():
         self.o_pipman_server = Flask(__name__, template_folder="web",
                                      static_folder="static")
         self.register_routes()
+        self.register_api_endpoints()
 
         self.o_pipman = PipMan()
         self.o_checker = PackageChecker(RequestsRunner())
@@ -20,10 +21,13 @@ class PipManAPI():
     def register_routes(self):
         self.o_pipman_server.add_url_rule(
             "/", "index", self.index, methods=["GET"])
-        self.o_pipman_server.add_url_rule("/api/get_outdated_packages",
-                                          "get_outdated_packages", self.get_outdated_packages, methods=["GET"])
+
         self.o_pipman_server.add_url_rule(
             "/outdated", "show_outdated", self.show_outdated, methods=["GET"])
+
+    def register_api_endpoints(self):
+        self.o_pipman_server.add_url_rule("/api/get_outdated_packages",
+                                          "get_outdated_packages", self.get_outdated_packages, methods=["GET"])
 
         self.o_pipman_server.add_url_rule(
             "/api/search_package", "search_package", self.search_package, methods=["GET"])
