@@ -3,32 +3,32 @@
 from flask import Flask, redirect, url_for, render_template, request, jsonify
 import subprocess
 
-from library.classes.pipup import PipUp
+from library.classes.pipman import PipMan
 from library.classes.concrete_checker import PackageChecker
 from library.classes.requests_runner import RequestsRunner
 
 
-class PipUpAPI():
+class PipManAPI():
     def __init__(self):
-        self.o_pipup_server = Flask(__name__, template_folder="web",
-                                    static_folder="static")
+        self.o_pipman_server = Flask(__name__, template_folder="web",
+                                     static_folder="static")
         self.register_routes()
 
-        self.o_pipup = PipUp()
+        self.o_pipman = PipMan()
         self.o_checker = PackageChecker(RequestsRunner())
 
     def register_routes(self):
-        self.o_pipup_server.add_url_rule(
+        self.o_pipman_server.add_url_rule(
             "/", "index", self.index, methods=["GET"])
-        self.o_pipup_server.add_url_rule("/api/get_outdated_packages",
-                                         "get_outdated_packages", self.get_outdated_packages, methods=["GET"])
-        self.o_pipup_server.add_url_rule(
+        self.o_pipman_server.add_url_rule("/api/get_outdated_packages",
+                                          "get_outdated_packages", self.get_outdated_packages, methods=["GET"])
+        self.o_pipman_server.add_url_rule(
             "/outdated", "show_outdated", self.show_outdated, methods=["GET"])
 
-        self.o_pipup_server.add_url_rule(
+        self.o_pipman_server.add_url_rule(
             "/api/search_package", "search_package", self.search_package, methods=["GET"])
 
-        self.o_pipup_server.add_url_rule(
+        self.o_pipman_server.add_url_rule(
             "/api/update", "update_package", self.update_package, methods=["POST"])
 
     def set_status_message(self, data):
@@ -38,7 +38,7 @@ class PipUpAPI():
         return redirect(url_for("show_outdated"))
 
     def get_outdated_packages(self):
-        outdated_packages = self.o_pipup.read_outdated_packages()
+        outdated_packages = self.o_pipman.read_outdated_packages()
 
         status_message = self.set_status_message(outdated_packages)
 
@@ -73,7 +73,7 @@ class PipUpAPI():
 
         try:
             self.o_checker.run(package_name=package_name)
-            self.o_pipup.update_package(package_name)
+            self.o_pipman.update_package(package_name)
 
             return jsonify({
                 "status": "Update successfully executed.",
@@ -97,9 +97,9 @@ class PipUpAPI():
 
     def run(self):
         # self.o_pipup_server.run(host='0.0.0.0', port=5000)
-        self.o_pipup_server.run(host='127.0.0.1', port=5000, debug=True)
+        self.o_pipman_server.run(host='127.0.0.1', port=5000, debug=True)
 
 
 if __name__ == "__main__":
-    pipup_app = PipUpAPI()
-    pipup_app.run()
+    pipman_app = PipManAPI()
+    pipman_app.run()

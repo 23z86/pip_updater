@@ -3,7 +3,7 @@
 from library.classes.command_factory import CommandFactory
 
 
-class PipUp:
+class PipMan:
     def __init__(self):
         self.o_factory = CommandFactory()
 
