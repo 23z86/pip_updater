@@ -36,10 +36,10 @@
             </div>
             <div class="ui segment" id="install">
                 <div class="ui icon input">
-                    <input type="text" placeholder="Search package...">
-                    <i class="inverted circular search link icon"></i>
+                    <input type="text" id="packageToSearch" placeholder="Search package...">
+                    <i class="inverted circular search link icon" onclick="searchForPackage()"></i>
                 </div>
-                <button class="ui active button">
+                <button id="download_button" class="ui active button">
                     <i class="download icon"></i>
                     Install
                 </button>

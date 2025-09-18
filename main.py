@@ -24,6 +24,10 @@ class PipUpAPI():
                                          "get_outdated_packages", self.get_outdated_packages, methods=["GET"])
         self.o_pipup_server.add_url_rule(
             "/outdated", "show_outdated", self.show_outdated, methods=["GET"])
+
+        self.o_pipup_server.add_url_rule(
+            "/api/search_package", "search_package", self.search_package, methods=["GET"])
+
         self.o_pipup_server.add_url_rule(
             "/api/update", "update_package", self.update_package, methods=["POST"])
 
@@ -45,6 +49,24 @@ class PipUpAPI():
 
     def show_outdated(self):
         return render_template("outdated.html")
+
+    def search_package(self):
+        package_name = request.args.get('name')
+        try:
+            self.o_checker.run(package_name=package_name)
+
+            return jsonify({
+                "status": "Package found.",
+                "status_code": 100,
+                "message": f"Package '{package_name}' found on PyPi."
+            }), 200
+
+        except ModuleNotFoundError as error:
+            return jsonify({
+                "status": "Package not found!",
+                "status_code": 400,
+                "message": str(error.msg)
+            }), 200
 
     def update_package(self):
         package_name = request.data.decode("utf-8")
