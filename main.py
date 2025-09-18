@@ -74,7 +74,8 @@ class PipUpAPI():
             }), 500
 
     def run(self):
-        self.o_pipup_server.run(host='127.0.0.1', port=5000)
+        # self.o_pipup_server.run(host='0.0.0.0', port=5000)
+        self.o_pipup_server.run(host='127.0.0.1', port=5000, debug=True)
 
 
 if __name__ == "__main__":

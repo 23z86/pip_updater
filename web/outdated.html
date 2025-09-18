@@ -12,6 +12,7 @@
     <script src="{{ url_for('static', filename='semanticui/semantic.min.js') }}"></script>
     <script src="{{ url_for('static', filename='customjs/requests.js') }}" type="module"></script>
     <script src="{{ url_for('static', filename='customjs/translation.js') }}" type="module"></script>
+    <script src="{{ url_for('static', filename='customjs/install.js') }}" type="module"></script>
 
 </head>
 
@@ -33,9 +34,25 @@
                 </div>
                 <p></p>
             </div>
+            <div class="ui segment" id="install">
+                <div class="ui icon input">
+                    <input type="text" placeholder="Search package...">
+                    <i class="inverted circular search link icon"></i>
+                </div>
+                <button class="ui active button">
+                    <i class="download icon"></i>
+                    Install
+                </button>
+                <button id="close" onclick="closePopUp()" class="ui inverted red button">
+                    <i class="close icon"></i>
+                </button>
+            </div>
             <div class="ui labeled icon menu">
                 <a class="item" onclick="loadOutdated()">
                     <i class="sync icon"></i>
+                </a>
+                <a class="item" onclick="downloadNewPackage()">
+                    <i class="download icon"></i>
                 </a>
             </div>
             <div class="scroll-container">

@@ -59,11 +59,11 @@
  }
 
  button.fixed-button {
-    width: 8rem;
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-}
+     width: 8rem;
+     text-align: center;
+     white-space: nowrap;
+     overflow: hidden;
+ }
 
  table {
      width: 100%;
@@ -98,4 +98,29 @@
      align-items: center;
      justify-content: center;
      height: 100%;
+ }
+
+ div#install {
+     display: none;
+     position: fixed;
+     top: 50%;
+     left: 50%;
+     width: 50%;
+     height: 30%;
+     background-color: rgba(255, 255, 255, 0.8);
+     z-index: 1000;
+     transform: translate(-50%, -50%);
+ }
+
+ button#close {
+     position: absolute;
+     top: 15px;
+     right: 10px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+
+ #close .close.icon {
+     margin: 0;
  }
