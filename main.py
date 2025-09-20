@@ -35,6 +35,9 @@ class PipManAPI():
         self.o_pipman_server.add_url_rule(
             "/api/update", "update_package", self.update_package, methods=["POST"])
 
+        self.o_pipman_server.add_url_rule(
+            "/api/install", "install_package", self.install_package, methods=["POST"])
+
     def set_status_message(self, data):
         return "No data found." if data == [] else "Data retrieved successfully."
 
@@ -98,6 +101,17 @@ class PipManAPI():
                 "status": "Update failed!",
                 "message": f"Error in subprocess with code {error.returncode}."
             }), 500
+
+    def install_package(self):
+        package_name = request.data.decode("utf-8")
+
+        self.o_pipman.install_package(package_name)
+
+        return jsonify({
+            "status": "Installation successfull.",
+            "status_code": 100,
+            "message": f"Package '{package_name}' installed successfully."
+        }), 200
 
     def run(self):
         # self.o_pipup_server.run(host='0.0.0.0', port=5000)

@@ -14,3 +14,7 @@ class PipMan:
     def read_outdated_packages(self):
         o_reader = self.o_factory.get_commander("read")
         return o_reader.run()
+
+    def install_package(self, package_name):
+        o_installer = self.o_factory.get_commander("install")
+        o_installer.run(package_name=package_name)
