@@ -23,7 +23,7 @@ class PipManAPI():
             "/", "index", self.index, methods=["GET"])
 
         self.o_pipman_server.add_url_rule(
-            "/outdated", "show_outdated", self.show_outdated, methods=["GET"])
+            "/main", "main", self.main, methods=["GET"])
 
     def register_api_endpoints(self):
         self.o_pipman_server.add_url_rule("/api/get_outdated_packages",
@@ -39,7 +39,7 @@ class PipManAPI():
         return "No data found." if data == [] else "Data retrieved successfully."
 
     def index(self):
-        return redirect(url_for("show_outdated"))
+        return redirect(url_for("main"))
 
     def get_outdated_packages(self):
         outdated_packages = self.o_pipman.read_outdated_packages()
@@ -51,8 +51,8 @@ class PipManAPI():
             "data": outdated_packages
         }), 200
 
-    def show_outdated(self):
-        return render_template("outdated.html")
+    def main(self):
+        return render_template("main.html")
 
     def search_package(self):
         package_name = request.args.get('name')
