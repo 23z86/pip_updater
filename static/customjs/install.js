@@ -1,13 +1,13 @@
 import { getTranslations } from "./translation.js";
 const translation = await getTranslations()
 
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
         searchForPackage();
     }
 });
 
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') {
         closePopUp();
     }
@@ -66,6 +66,33 @@ async function searchForPackage() {
         });
 }
 
+function runInstaller(button) {
+    var packageToSearch = document.getElementById('packageToSearch').value;
+
+    button.className = "ui loading button";
+    button.disabled = "";
+
+    fetch("/api/install", {
+        method: "POST",
+        headers: { "Content-Type": "text/plain" },
+        body: packageToSearch
+    }).then(response => response.json())
+        .then(data => {
+            if (data.status_code === 100) {
+                console.log(data);
+                button.className = "ui positive button";
+                button.enabled = "";
+            } else {
+                console.warn(data.message);
+
+            }
+        })
+        .catch(err => {
+            console.warn(err);
+        });
+}
+
 (window).downloadNewPackage = downloadNewPackage;
 (window).closePopUp = closePopUp;
 (window).searchForPackage = searchForPackage;
+(window).runInstaller = runInstaller;
