@@ -27,7 +27,7 @@ function closePopUp() {
                     <input type="text" id="packageToSearch" placeholder="Search package...">
                     <i class="inverted circular search link icon" onclick="searchForPackage()"></i>
                 </div>
-                <button id="download_button" class="ui active button">
+                <button id="download_button" onclick="runInstaller(this)" class="ui active button">
                     <i class="download icon"></i>
                     Install
                 </button>
@@ -66,13 +66,13 @@ async function searchForPackage() {
         });
 }
 
-function runInstaller(button) {
+async function runInstaller(button) {
     var packageToSearch = document.getElementById('packageToSearch').value;
 
     button.className = "ui loading button";
     button.disabled = "";
 
-    fetch("/api/install", {
+    await fetch("/api/install", {
         method: "POST",
         headers: { "Content-Type": "text/plain" },
         body: packageToSearch
