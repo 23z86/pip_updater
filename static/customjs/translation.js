@@ -17,6 +17,8 @@ async function setFieldsByLanguage() {
     document.getElementById("th_current_version").innerText = i18n["currentVersion"];
     document.getElementById("th_action").innerText = i18n["action"];
     document.getElementById("td_packages").innerText = i18n["noOutdatedPackages"];
+    document.getElementById("packageToSearch").placeholder  = i18n["placeHolderSearch"];
+    document.getElementById("download_button").innerText = i18n["install"];
 
 }
 

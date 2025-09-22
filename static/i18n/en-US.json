@@ -9,5 +9,7 @@
     "noOutdatedPackages": "No outdated packages found. 🎉",
     "errorUpdateFailed": "Update failed: ",
     "updateButtonText": "Update",
-    "buttonTextFailed": "Failed!"
+    "buttonTextFailed": "Failed!",
+    "placeHolderSearch": "Search package...",
+    "install": "Install"
 }

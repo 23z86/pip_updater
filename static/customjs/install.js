@@ -13,23 +13,44 @@ document.addEventListener('keydown', function (event) {
     }
 });
 
-async function downloadNewPackage() {
+//document.getElementById('install').addEventListener("load", setPopUp);
+
+function setPopUp() {
+    const install_div = document.getElementById('install');
+
+    const reset_html = `
+  <div class="ui icon input">
+                    <input type="text" id="packageToSearch" placeholder="${translation["placeHolderSearch"]}">
+                    <i class="inverted circular search link icon" onclick="searchForPackage()"></i>
+                </div>
+                <button id="download_button" onclick="runInstaller(this)" class="ui active button">
+                    <i class="download icon"></i>
+                    ${translation["install"]}
+                </button>
+                <button id="close" onclick="closePopUp()" class="ui inverted red button">
+                    <i class="close icon"></i>
+                </button>`;
+    install_div.innerHTML = '';
+    install_div.innerHTML = reset_html;
+}
+
+async function showInstallPopup() {
     const install_div = document.getElementById('install');
     install_div.style.display = 'block';
 
 }
 
-function closePopUp() {
-    const install_div = document.getElementById('install');
+async function closePopUp() {
+    const install_div = await document.getElementById('install');
 
     const reset_html = `
                 <div class="ui icon input">
-                    <input type="text" id="packageToSearch" placeholder="Search package...">
+                    <input type="text" id="packageToSearch" placeholder="${translation["placeHolderSearch"]}">
                     <i class="inverted circular search link icon" onclick="searchForPackage()"></i>
                 </div>
                 <button id="download_button" onclick="runInstaller(this)" class="ui active button">
                     <i class="download icon"></i>
-                    Install
+                    ${translation["install"]}
                 </button>
                 <button id="close" onclick="closePopUp()" class="ui inverted red button">
                     <i class="close icon"></i>
@@ -92,7 +113,7 @@ async function runInstaller(button) {
         });
 }
 
-(window).downloadNewPackage = downloadNewPackage;
+(window).showInstallPopup = showInstallPopup;
 (window).closePopUp = closePopUp;
 (window).searchForPackage = searchForPackage;
 (window).runInstaller = runInstaller;

@@ -9,5 +9,7 @@
     "noOutdatedPackages": "Keine veralteten Pakete gefunden. 🎉",
     "errorUpdateFailed": "Update fehlgeschlagen: ",
     "updateButtonText": "Aktualisieren",
-    "buttonTextFailed": "Fehlgeschlagen!"
+    "buttonTextFailed": "Fehlgeschlagen!",
+    "placeHolderSearch": "Paket suchen...",
+    "install": "Installieren"
 }
