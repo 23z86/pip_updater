@@ -13,7 +13,7 @@ document.addEventListener('keydown', function (event) {
     }
 });
 
-//document.getElementById('install').addEventListener("load", setPopUp);
+document.getElementById('install').addEventListener("load", setPopUp());
 
 function setPopUp() {
     const install_div = document.getElementById('install');
@@ -23,7 +23,7 @@ function setPopUp() {
                     <input type="text" id="packageToSearch" placeholder="${translation["placeHolderSearch"]}">
                     <i class="inverted circular search link icon" onclick="searchForPackage()"></i>
                 </div>
-                <button id="download_button" onclick="runInstaller(this)" class="ui active button">
+                <button id="download_button" onclick="runInstaller(this)" class="ui disabled button">
                     <i class="download icon"></i>
                     ${translation["install"]}
                 </button>
@@ -48,7 +48,7 @@ async function closePopUp() {
                     <input type="text" id="packageToSearch" placeholder="${translation["placeHolderSearch"]}">
                     <i class="inverted circular search link icon" onclick="searchForPackage()"></i>
                 </div>
-                <button id="download_button" onclick="runInstaller(this)" class="ui active button">
+                <button id="download_button" onclick="runInstaller(this)" class="ui disabled button">
                     <i class="download icon"></i>
                     ${translation["install"]}
                 </button>
