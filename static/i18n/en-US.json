@@ -11,5 +11,6 @@
     "updateButtonText": "Update",
     "buttonTextFailed": "Failed!",
     "placeHolderSearch": "Search package...",
-    "install": "Install"
+    "install": "Install",
+    "installSuccess": "Package successfully installed!"
 }

@@ -84,6 +84,8 @@ async function searchForPackage() {
         })
         .catch(err => {
             console.error(err);
+            downloadButton.className = "ui disabled button";
+
         });
 }
 
@@ -93,6 +95,7 @@ async function runInstaller(button) {
     button.className = "ui loading button";
     button.disabled = "";
 
+
     await fetch("/api/install", {
         method: "POST",
         headers: { "Content-Type": "text/plain" },
@@ -100,9 +103,10 @@ async function runInstaller(button) {
     }).then(response => response.json())
         .then(data => {
             if (data.status_code === 100) {
-                console.log(data);
                 button.className = "ui positive button";
                 button.enabled = "";
+
+                showSuccessPopup();
             } else {
                 console.warn(data.message);
 
@@ -111,6 +115,24 @@ async function runInstaller(button) {
         .catch(err => {
             console.warn(err);
         });
+}
+
+async function showSuccessPopup() {
+    const successPopup = await document.getElementById('success_popup');
+
+    const successPopupMessage = `
+                <div class="ui icon input">
+                    <p><b>${translation["installSuccess"]}</b></p>
+                </div>
+               `;
+
+    successPopup.innerHTML = successPopupMessage;
+    successPopup.style.display = 'flex';
+
+    setTimeout(() => {
+        successPopup.style.display = 'none';
+    }, 2000);
+
 }
 
 (window).showInstallPopup = showInstallPopup;
