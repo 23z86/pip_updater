@@ -114,8 +114,7 @@ class PipManAPI():
         }), 200
 
     def run(self):
-        # self.o_pipup_server.run(host='0.0.0.0', port=5000)
-        self.o_pipman_server.run(host='127.0.0.1', port=5000, debug=True)
+        self.o_pipman_server.run(host='0.0.0.0')
 
 
 if __name__ == "__main__":
